@@ -1,0 +1,303 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PHYS434_HW2</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-10-14"><meta name="DC.source" content="PHYS434_HW2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>; close <span class="string">all</span>; clc
+<span class="comment">% HW #2</span>
+</pre><p>Problem 1 Rolling snake eyes: 1/6 * 1/6 = 1/36 Rolling sum of sevens: 6/36 = 1/6, since there are 6 combinations that could get sum of sevens which out of 36 outcomes in total. The probability ratio is 1:6, which rolling sevens will have a higher probabbility compare to rolling snake eyes</p><pre class="codeinput"><span class="comment">% Problem 2</span>
+<span class="comment">% Analytically:</span>
+<span class="comment">%     1  2  3  4  5  6</span>
+<span class="comment">%   +-------------------</span>
+<span class="comment">% 1 | 2  3  4  5  6  7</span>
+<span class="comment">% 2 | 3  4  5  6  7  8</span>
+<span class="comment">% 3 | 4  5  6  7  8  9</span>
+<span class="comment">% 4 | 5  6  7  8  9 10</span>
+<span class="comment">% 5 | 6  7  8  9 10 11</span>
+<span class="comment">% 6 | 7  8  9 10 11 12</span>
+<span class="comment">% Which is shown there is 36 outcomes in total</span>
+<span class="comment">% 1 combination of getting sum of 2, probablity: 1/36</span>
+<span class="comment">% 2 combinations of getting sum of 3, probablity: 2/36</span>
+<span class="comment">% 3 combinations of getting sum of 4, probablity: 3/36</span>
+<span class="comment">% 4 combinations of getting sum of 5, probablity: 4/36</span>
+<span class="comment">% 5 combinations of getting sum of 6, probablity: 5/36</span>
+<span class="comment">% 6 combinations of getting sum of 7, probablity: 6/36</span>
+<span class="comment">% 5 combinations of getting sum of 8, probablity: 5/36</span>
+<span class="comment">% 4 combinations of getting sum of 9, probablity: 4/36</span>
+<span class="comment">% 3 combinations of getting sum of 10, probablity: 3/36</span>
+<span class="comment">% 2 combinations of getting sum of 11, probablity: 2/36</span>
+<span class="comment">% 1 combinations of getting sum of 12, probablity: 1/36</span>
+</pre><p>Numerically</p><pre class="codeinput">D1 = zeros(201,1);
+    <span class="keyword">for</span> i=1:6
+    D1(i+100) = 1/6;
+    <span class="keyword">end</span>
+D2 = 0*D1;
+<span class="keyword">for</span> x=0:99
+    D2(x+100) = 0;
+    <span class="keyword">for</span> k=0:99
+        D2(x+100) = D2(x+100) + D1(k+100)*D1(x-k+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(1);
+bar(D2(101:114))
+xlabel(<span class="string">'Sum of two dice'</span>);
+ylabel(<span class="string">'Probability'</span>);
+</pre><img vspace="5" hspace="5" src="PHYS434_HW2_01.png" alt=""> <p>Problem 3</p><pre class="codeinput">mean = (2*(1/36)) + (3*(2/36)) + (4*(3/36)) + (5*(4/36)) + (6*(5/36)) + (7*(6/36)) + (8*(5/36)) + (9*(4/36)) + (10*(3/36)) + (11*(2/36)) + (12*(1/36))
+variance = ((2-7)^2 * (1/36)) + ((3-7)^2 * (2/36)) + ((4-7)^2 * (3/36)) + ((5-7)^2 * (4/36)) + ((6-7)^2 * (5/36)) + ((7-7)^2 * (6/36)) + ((8-7)^2 * (5/36)) + ((9-7)^2 * (4/36)) + ((10-7)^2 * (3/36)) + ((11-7)^2 * (2/36)) + ((12-7)^2 * (1/36))
+</pre><pre class="codeoutput">
+mean =
+
+    7.0000
+
+
+variance =
+
+    5.8333
+
+</pre><pre class="codeinput"><span class="comment">%Problem 4</span>
+D3 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D3(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D3(m+100) = D3(m+100)+D2(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D4 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D4(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D4(m+100) = D4(m+100)+D3(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D5 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D5(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D5(m+100) = D5(m+100)+D4(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D6 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D6(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D6(m+100) = D6(m+100)+D5(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D7 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D7(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D7(m+100) = D7(m+100)+D6(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D8 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D8(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D8(m+100) = D8(m+100)+D7(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D9 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D9(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D9(m+100) = D9(m+100)+D8(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+D10 = 0*D1;
+<span class="keyword">for</span> m = 0:99
+    D10(m+100) = 0;
+    <span class="keyword">for</span> n = 0:99
+        D10(m+100) = D10(m+100)+D9(n+100)*D1(m-n+100);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(2);
+bar(D10(105:165))
+xlabel(<span class="string">'Sum of two dice'</span>);
+ylabel(<span class="string">'Probability'</span>);
+</pre><img vspace="5" hspace="5" src="PHYS434_HW2_02.png" alt=""> <p>Problem 5</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all; close all; clc
+% HW #2 
+%%
+% Problem 1
+% Rolling snake eyes: 1/6 * 1/6 = 1/36
+% Rolling sum of sevens: 6/36 = 1/6, since there are 6 combinations that
+% could get sum of sevens which out of 36 outcomes in total.
+% The probability ratio is 1:6, which rolling sevens will have a higher
+% probabbility compare to rolling snake eyes
+%%
+
+% Problem 2
+% Analytically: 
+%     1  2  3  4  5  6
+%   +REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% 1 | 2  3  4  5  6  7
+% 2 | 3  4  5  6  7  8
+% 3 | 4  5  6  7  8  9
+% 4 | 5  6  7  8  9 10
+% 5 | 6  7  8  9 10 11
+% 6 | 7  8  9 10 11 12
+% Which is shown there is 36 outcomes in total
+% 1 combination of getting sum of 2, probablity: 1/36
+% 2 combinations of getting sum of 3, probablity: 2/36
+% 3 combinations of getting sum of 4, probablity: 3/36
+% 4 combinations of getting sum of 5, probablity: 4/36
+% 5 combinations of getting sum of 6, probablity: 5/36
+% 6 combinations of getting sum of 7, probablity: 6/36
+% 5 combinations of getting sum of 8, probablity: 5/36
+% 4 combinations of getting sum of 9, probablity: 4/36
+% 3 combinations of getting sum of 10, probablity: 3/36
+% 2 combinations of getting sum of 11, probablity: 2/36
+% 1 combinations of getting sum of 12, probablity: 1/36
+%%
+% Numerically
+D1 = zeros(201,1);
+    for i=1:6
+    D1(i+100) = 1/6;
+    end
+D2 = 0*D1;
+for x=0:99
+    D2(x+100) = 0;
+    for k=0:99
+        D2(x+100) = D2(x+100) + D1(k+100)*D1(x-k+100);
+    end
+end
+figure(1);
+bar(D2(101:114))
+xlabel('Sum of two dice');
+ylabel('Probability');
+%%
+% Problem 3
+mean = (2*(1/36)) + (3*(2/36)) + (4*(3/36)) + (5*(4/36)) + (6*(5/36)) + (7*(6/36)) + (8*(5/36)) + (9*(4/36)) + (10*(3/36)) + (11*(2/36)) + (12*(1/36))
+variance = ((2-7)^2 * (1/36)) + ((3-7)^2 * (2/36)) + ((4-7)^2 * (3/36)) + ((5-7)^2 * (4/36)) + ((6-7)^2 * (5/36)) + ((7-7)^2 * (6/36)) + ((8-7)^2 * (5/36)) + ((9-7)^2 * (4/36)) + ((10-7)^2 * (3/36)) + ((11-7)^2 * (2/36)) + ((12-7)^2 * (1/36))
+%%
+%Problem 4
+D3 = 0*D1;
+for m = 0:99
+    D3(m+100) = 0;
+    for n = 0:99
+        D3(m+100) = D3(m+100)+D2(n+100)*D1(m-n+100);
+    end
+end
+D4 = 0*D1;
+for m = 0:99
+    D4(m+100) = 0;
+    for n = 0:99
+        D4(m+100) = D4(m+100)+D3(n+100)*D1(m-n+100);
+    end
+end
+D5 = 0*D1;
+for m = 0:99
+    D5(m+100) = 0;
+    for n = 0:99
+        D5(m+100) = D5(m+100)+D4(n+100)*D1(m-n+100);
+    end
+end
+D6 = 0*D1;
+for m = 0:99
+    D6(m+100) = 0;
+    for n = 0:99
+        D6(m+100) = D6(m+100)+D5(n+100)*D1(m-n+100);
+    end
+end
+D7 = 0*D1;
+for m = 0:99
+    D7(m+100) = 0;
+    for n = 0:99
+        D7(m+100) = D7(m+100)+D6(n+100)*D1(m-n+100);
+    end
+end
+D8 = 0*D1;
+for m = 0:99
+    D8(m+100) = 0;
+    for n = 0:99
+        D8(m+100) = D8(m+100)+D7(n+100)*D1(m-n+100);
+    end
+end
+D9 = 0*D1;
+for m = 0:99
+    D9(m+100) = 0;
+    for n = 0:99
+        D9(m+100) = D9(m+100)+D8(n+100)*D1(m-n+100);
+    end
+end
+D10 = 0*D1;
+for m = 0:99
+    D10(m+100) = 0;
+    for n = 0:99
+        D10(m+100) = D10(m+100)+D9(n+100)*D1(m-n+100);
+    end
+end
+figure(2);
+bar(D10(105:165))
+xlabel('Sum of two dice');
+ylabel('Probability');
+%%
+% Problem 5
+
+##### SOURCE END #####
+--></body></html>
